@@ -9,15 +9,25 @@ public class Radio {
     private int minVolume = 0;
 
     public int getCurrentStationNumber() { // актуальный номер станции
+
         return currentStationNumber;
     }
 
     public int getCurrentVolume() {  // текущий уровень громкости
+
         return currentVolume;
     }
 
     public void setCurrentVolume(int currentVolume) {// Установить уровень звука
+
         this.currentVolume = currentVolume;
+    }
+
+    public Radio (int RadioStation){
+        maxStationNumber = RadioStation;
+    }
+
+    public Radio (){
     }
 
     public int setToLastStation() { // переключиться на последнюю станцию
@@ -79,6 +89,16 @@ public class Radio {
             return;
         }
         if (StationNumber > 9) {
+            return;
+        }
+        this.currentStationNumber = StationNumber;
+    }
+    public void setRadioStation(int StationNumber) { // подходит ли выбранный номер станции,если задали количество сами
+
+        if (StationNumber < minStationNumber) {
+            return;
+        }
+        if (StationNumber > maxStationNumber) {
             return;
         }
         this.currentStationNumber = StationNumber;
