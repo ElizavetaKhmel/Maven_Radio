@@ -14,6 +14,7 @@ public class Radio {
     }
 
     public Radio (){
+        this.maxStationNumber = 9;
     }
 
     public int getCurrentStationNumber() { // актуальный номер станции
