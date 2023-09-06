@@ -7,10 +7,10 @@ public class RadioTest {
 
     @Test
     public void shouldSetToLastStation() { //Выставилась ли последняя радиостанция
-        Radio radio = new Radio();
+        Radio radio = new Radio(45);
         radio.getCurrentStationNumber();
 
-        int expected = 9;
+        int expected = 44;
         int actual = radio.setToLastStation();
 
         Assertions.assertEquals(expected, actual);
@@ -158,9 +158,9 @@ public class RadioTest {
     @Test
     void radioStation() { // Заданное количество радиостанций
         Radio radio = new Radio(20);
-        int stationNumber = 19;
+        int selectStationNumber = 19;
 
-        radio.setRadioStation(stationNumber);
+        radio.setRadioStation(selectStationNumber);
 
         int expected = 19;
         int actual = radio.getCurrentStationNumber();
@@ -169,10 +169,10 @@ public class RadioTest {
     }
     @Test
     void radioStationMin() { // Заданное количество радиостанций
-        Radio radio = new Radio(20);
-        int stationNumber = -1;
+        Radio radio = new Radio(30);
+        int selectStationNumber = -1;
 
-        radio.setRadioStation(stationNumber);
+        radio.setRadioStation(selectStationNumber);
 
         int expected = 0;
         int actual = radio.getCurrentStationNumber();
@@ -182,9 +182,9 @@ public class RadioTest {
     @Test
     void radioStationMax() { // Заданное количество радиостанций
         Radio radio = new Radio(20);
-        int stationNumber = 21;
+        int selectStationNumber = 21;
 
-        radio.setRadioStation(stationNumber);
+        radio.setRadioStation(selectStationNumber);
 
         int expected = 0;
         int actual = radio.getCurrentStationNumber();
@@ -229,9 +229,9 @@ public class RadioTest {
     @Test
     void increaseVolume() { // увеличить громкость на +1
         Radio radio = new Radio();
-        int currentVolume = 90;
+        int volume = 90;
 
-        radio.setCurrentVolume(currentVolume);
+        radio.setCurrentVolume(volume);
 
         int expected = 91;
         int actual = radio.increaseVolume();
@@ -242,9 +242,9 @@ public class RadioTest {
     @Test
     void increaseToMaxVolume() { // увеличить громкость на +1
         Radio radio = new Radio();
-        int currentVolume = 99;
+        int volume = 99;
 
-        radio.setCurrentVolume(currentVolume);
+        radio.setCurrentVolume(volume);
 
         int expected = 100;
         int actual = radio.increaseVolume();
@@ -255,9 +255,9 @@ public class RadioTest {
     @Test
     void shouldNotIncreaseAboveMaxVolume() { // увеличить громкость на +1
         Radio radio = new Radio();
-        int currentVolume = 100;
+        int volume = 100;
 
-        radio.setCurrentVolume(currentVolume);
+        radio.setCurrentVolume(volume);
 
         int expected = 100;
         int actual = radio.increaseVolume();
@@ -268,9 +268,9 @@ public class RadioTest {
     @Test
     void decreaseToMinVolume() { // уменьшить громкость на -1
         Radio radio = new Radio();
-        int currentVolume = 1;
+        int volume = 1;
 
-        radio.setCurrentVolume(currentVolume);
+        radio.setCurrentVolume(volume);
 
         int expected = 0;
         int actual = radio.decreaseVolume();
@@ -281,9 +281,9 @@ public class RadioTest {
     @Test
     void decreaseBelowMinVolume() { // уменьшить громкость на -1
         Radio radio = new Radio();
-        int currentVolume = 0;
+        int volume = 0;
 
-        radio.setCurrentVolume(currentVolume);
+        radio.setCurrentVolume(volume);
 
         int expected = 0;
         int actual = radio.decreaseVolume();
