@@ -1,27 +1,39 @@
 package ru.netology.radio;
 
 public class Radio {
-    private int currentVolume;
-    private int currentStationNumber;
-    private int maxStationNumber = 9;
+    private int stationNumber;
+    private int maxStationNumber;
     private int minStationNumber = 0;
+    private int volume;
     private int maxVolume = 100;
     private int minVolume = 0;
 
+    public Radio (int radiostation){
+        this.maxStationNumber = radiostation - 1;
+
+    }
+
+    public Radio (){
+        this.maxStationNumber = 9;
+    }
+
     public int getCurrentStationNumber() { // актуальный номер станции
-        return currentStationNumber;
+
+        return stationNumber;
     }
 
     public int getCurrentVolume() {  // текущий уровень громкости
-        return currentVolume;
+
+        return volume;
     }
 
     public void setCurrentVolume(int currentVolume) {// Установить уровень звука
-        this.currentVolume = currentVolume;
+
+        this.volume = currentVolume;
     }
 
     public int setToLastStation() { // переключиться на последнюю станцию
-        this.maxStationNumber = maxStationNumber;
+        this.maxStationNumber = maxStationNumber--;
         return maxStationNumber;
     }
 
@@ -29,6 +41,42 @@ public class Radio {
         this.minStationNumber = minStationNumber;
         return minStationNumber;
     }
+    public void setRadioStation(int selectStationNumber) { // подходит ли выбранный номер станции,если задали количество сами
+
+        if (selectStationNumber < minStationNumber) {
+            return;
+        }
+        if (selectStationNumber > maxStationNumber) {
+            return;
+        }
+        this.stationNumber = selectStationNumber;
+    }
+    public int prevStationNumber() {  // предыдущая радиостанция
+        this.stationNumber--;
+        if (stationNumber < minStationNumber) {
+            stationNumber = maxStationNumber;
+        }
+        return stationNumber;
+    }
+
+    public int nextStationNumber() { // следующая радиостанция
+        this.stationNumber++;
+        if (stationNumber > maxStationNumber) {
+            stationNumber = minStationNumber;
+        }
+        return stationNumber;
+    }
+
+    public void setStationNumber(int selectStationNumber) { // подходит ли выбранный номер станции
+        if (selectStationNumber < minStationNumber) {
+            return;
+        }
+        if (selectStationNumber > maxStationNumber) {
+            return;
+        }
+        this.stationNumber = selectStationNumber;
+    }
+
 
     public int setToMaxVolume() { // установить максимальную громкость
         this.maxVolume = maxVolume;
@@ -41,49 +89,24 @@ public class Radio {
     }
 
     public int decreaseVolume() { // уменьшить громкость на 1
-        if (currentVolume > 0) {
-            currentVolume--;
+        if (volume > 0) {
+            volume--;
         } else {
             return 0;
         }
-        return currentVolume;
+        return volume;
     }
 
     public int increaseVolume() { // увеличить громкость на 1
-        if (currentVolume < 100) {
-            currentVolume++;
+        if (volume < 100) {
+            volume++;
         } else {
             return 100;
         }
-        return currentVolume;
-    }
-
-    public int prevStationNumber() {  // предыдущая радиостанция
-        this.currentStationNumber--;
-        if (currentStationNumber < 0) {
-            currentStationNumber = 9;
-        }
-        return currentStationNumber;
-    }
-
-    public int nextStationNumber() { // следующая радиостанция
-        this.currentStationNumber++;
-        if (currentStationNumber > 9) {
-            currentStationNumber = 0;
-        }
-        return currentStationNumber;
-    }
-
-    public void setStationNumber(int StationNumber) { // подходит ли выбранный номер станции
-        if (StationNumber < 0) {
-            return;
-        }
-        if (StationNumber > 9) {
-            return;
-        }
-        this.currentStationNumber = StationNumber;
+        return volume;
     }
 }
+
 
 
 
